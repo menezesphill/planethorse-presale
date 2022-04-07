@@ -1,0 +1,22 @@
+{
+  "name": "nft-presale",
+  "version": "1.0.0",
+  "author": "menezesphill",
+  "license": "MIT",
+  "scripts": {
+    "start": "static-server ./src --port 9011",
+    "dist": "static-server ./dist --port 9011",
+    "build": "parcel build src/index.html"
+  },
+  "dependencies": {
+    "@metamask/onboarding": "^1.0.1",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@truffle/hdwallet-provider": "^2.0.4",
+    "chai": "^4.3.6",
+    "fs": "^0.0.1-security",
+    "parcel": "^2.4.1",
+    "prettier": "^2.6.2",
+    "static-server": "^2.2.1",
+    "web3": "^1.7.1"
+  }
+}

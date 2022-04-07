@@ -1,0 +1,121 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Minting Dapp by taurinos.eth</title>
+  <link rel="icon" type="image/png" href="taurinos.ico">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+
+<body>
+  <main class="container-fluid">
+    <!-- <header>
+      <h1 class="text-center">E2E Test Dapp</h1>
+    </header> -->
+
+    <!-- Part 1 Setting up Basic Actions and Status-->
+    <section>
+      <!-- <h3 class="card-title">Status</h3> -->
+      <div class="row">
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+          <p class="info-text alert alert-primary">Network: <span id="network"></span></p>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+          <p class="info-text alert alert-secondary">ChainId: <span id="chainId"></span></p>
+         
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+          <button class="btn btn-primary btn-lg btn-block mb-3" id="connectButton" disabled></button>
+          <p class="info-text alert alert-secondary">USDC: <span id="contractStatus"></span></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- <section>
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Basic Actions</h4>
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="connectButton" disabled></button>
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="getAccounts">eth_accounts</button>
+              <p class="info-text alert alert-secondary">eth_accounts result: <span id="getAccountsResult"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- /Part 1 -->
+
+    <section>
+      <!-- Part 2 Contract-->
+      <div class="row">
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 col-12 align-items-stretch">
+          <div class="card full-width">
+            <div class="card-body">
+              <img class="mb-3" src="img/chest-common.gif" alt="Common Chest">
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="mint_common">Mint</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 col-12 align-items-stretch">
+          <div class="card full-width">
+            <div class="card-body">
+              <img class="mb-3" src="img/chest-rare.gif" alt="Rare Chest">
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="mint_rare">Mint</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 col-12 align-items-stretch">
+          <div class="card full-width">
+            <div class="card-body">
+              <img class="mb-3" src="img/chests-rare.gif" alt="Super Rare Chest">
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="mint_srare">Mint</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 col-12 align-items-stretch">
+          <div class="card full-width">
+            <div class="card-body">
+              <img class="mb-3" src="img/chest-epic.gif" alt="Epic Chest">
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="mint_epic">Mint</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 col-12 align-items-stretch">
+          <div class="card full-width">
+            <div class="card-body">
+              <img class="mb-3" src="img/chest-legendery.gif" alt="Legendary Chest">
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="mint_legend">Mint</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-6 col-md-12 col-sm-12 col-12 align-items-stretch">
+          <div class="card full-width">
+            <div class="card-body">
+              <img class="mb-3" src="img/chests-legendery.gif" alt="Super Legendary Chest">
+              <button class="btn btn-primary btn-lg btn-block mb-3" id="mint_slegend">Mint</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="./metamask-onboarding.bundle.js"></script>
+  <script type="module" src="bundle.js" defer></script>
+</body>
+
+</html>
