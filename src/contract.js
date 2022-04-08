@@ -184,8 +184,8 @@ checkForApprovals();
   mintCommon.onclick = async () => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     contractStatus.innerHTML = (await window.token.methods.balanceOf(accounts[0]).call())/10e5;
-
-    if (mintCommon.innerText == "Approve"){
+    console.log(mintCommon.innerText)
+    if (mintCommon.innerText == "APPROVE"){
       await window.token.methods
       .approve(window.contract.options.address, web3.utils.toWei('10000000000', 'ether'))
       .send({from: accounts[0]})
@@ -197,6 +197,8 @@ checkForApprovals();
           console.log(confirmationNumber);
           console.log(receipt);
         }
+      }).then(async function () {
+        window.location.reload();
       });
     } else {
         await window.contract.methods
