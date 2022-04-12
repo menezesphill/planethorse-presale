@@ -6,18 +6,24 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "./Withdrawable.sol";
+import "./Authorizable.sol";
 
 contract PlanetHorseNFT is
   ERC721,
   ERC721Enumerable,
   Pausable,
-  Withdrawable
+  Withdrawable,
+  ReentrancyGuard,
+  Authorizable
 {
   using Counters for Counters.Counter;
   using Strings for uint256;
+
+  event RevealRequested(address indexed from, uint256 tokenId, string tokenTier);
 
   ERC20 public paymentCurrency;
 
@@ -105,7 +111,13 @@ contract PlanetHorseNFT is
     _unpause();
   }
 
-  function mint(string memory rarity_) external whenNotPaused {
+  function mint(
+    string memory rarity_
+    )
+     external 
+     whenNotPaused 
+     nonReentrant 
+  {
     _checkRarityBeforeMint(rarity_);
     if (block.timestamp < _unlimitedSaleTime) {
       require(
@@ -120,9 +132,11 @@ contract PlanetHorseNFT is
     if (block.timestamp < _publicSaleTime) {
       revert("PlanetHorseNFT: public sale hasn't started");
     }
+
       uint256 tokenId = _tokenIdCounter.current();
       _tokenTiers[tokenId] = rarity_;
       _mintByRarity(msg.sender, rarity_);
+    
   }
 
   function mintWhitelist(
@@ -130,6 +144,7 @@ contract PlanetHorseNFT is
   )
     external
     whenNotPaused
+    nonReentrant
   {
     _checkRarityBeforeMint(rarity_);
     require(
@@ -149,9 +164,11 @@ contract PlanetHorseNFT is
     if (block.timestamp < _whitelistSaleTime) {
       revert("PlanetHorseNFT: whitelist sale hasn't started");
     }
+    
       uint256 tokenId = _tokenIdCounter.current();
       _tokenTiers[tokenId] = rarity_;
       _mintByRarity(msg.sender, rarity_);
+    
   }
 
   function mintOwner(address to_, string memory rarity_) external onlyOwner {
@@ -307,7 +324,7 @@ contract PlanetHorseNFT is
 
   function setRevealedURI(string memory baseURI, uint256 tokenId)
     external
-    onlyOwner
+    onlyAuthorized
   {
     _revealedTokenURIs[tokenId] = baseURI;
 
@@ -317,11 +334,13 @@ contract PlanetHorseNFT is
     external
     whenNotPaused
   {
+    require(!_revealed[tokenId], "PlanetHorseNFT: token already revealed");
     require(ownerOf(tokenId) == msg.sender, "PlanetHorseNFT: only NFT owner can unbox");
     if (block.timestamp < _revealTime) {
       revert("PlanetHorseNFT: box opening hasn't started");
     }
      _revealed[tokenId] = true;
+     emit RevealRequested(msg.sender, tokenId, _tokenTiers[tokenId]);
   }
 
 

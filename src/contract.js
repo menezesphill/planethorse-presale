@@ -156,11 +156,9 @@ const initialize = () => {
   MetaMaskClientCheck();
 
 web3 = new Web3(window.web3.currentProvider);
-const tokenABI = USDJson.abi;
-const contractABI = NFTJson.abi;
   
-window.token = new web3.eth.Contract(tokenABI, USDJson.networks[80001].address);
-window.contract = new web3.eth.Contract(contractABI, NFTJson.networks[80001].address);
+window.token = new web3.eth.Contract(USDJson.abi, USDJson.networks[80001].address);
+window.contract = new web3.eth.Contract(NFTJson.abi, NFTJson.networks[80001].address);
 
 const checkForApprovals = async () => {
   const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -224,7 +222,7 @@ checkForApprovals();
     const accounts = await ethereum.request({ method: "eth_accounts" });
     contractStatus.innerHTML = (await window.token.methods.balanceOf(accounts[0]).call())/10e5;
 
-    if (mintCommon.innerText == "Approve"){
+    if (mintCommon.innerText == "APPROVE"){
       await window.token.methods
       .approve(window.contract.options.address, web3.utils.toWei('10000000000', 'ether'))
       .send({from: accounts[0]})
@@ -261,7 +259,7 @@ checkForApprovals();
     const accounts = await ethereum.request({ method: "eth_accounts" });
     contractStatus.innerHTML = (await window.token.methods.balanceOf(accounts[0]).call())/10e5;
 
-    if (mintCommon.innerText == "Approve"){
+    if (mintCommon.innerText == "APPROVE"){
       await window.token.methods
       .approve(window.contract.options.address, web3.utils.toWei('10000000000', 'ether'))
       .send({from: accounts[0]})
@@ -298,7 +296,7 @@ checkForApprovals();
     const accounts = await ethereum.request({ method: "eth_accounts" });
     contractStatus.innerHTML = (await window.token.methods.balanceOf(accounts[0]).call())/10e5;
 
-    if (mintCommon.innerText == "Approve"){
+    if (mintCommon.innerText == "APPROVE"){
       await window.token.methods
       .approve(window.contract.options.address, web3.utils.toWei('10000000000', 'ether'))
       .send({from: accounts[0]})
@@ -335,7 +333,7 @@ checkForApprovals();
     const accounts = await ethereum.request({ method: "eth_accounts" });
     contractStatus.innerHTML = (await window.token.methods.balanceOf(accounts[0]).call())/10e5;
 
-    if (mintCommon.innerText == "Approve"){
+    if (mintCommon.innerText == "APPROVE"){
       await window.token.methods
       .approve(window.contract.options.address, web3.utils.toWei('10000000000', 'ether'))
       .send({from: accounts[0]})
@@ -372,7 +370,7 @@ checkForApprovals();
     const accounts = await ethereum.request({ method: "eth_accounts" });
     contractStatus.innerHTML = (await window.token.methods.balanceOf(accounts[0]).call())/10e5;
 
-    if (mintCommon.innerText == "Approve"){
+    if (mintCommon.innerText == "APPROVE"){
       await window.token.methods
       .approve(window.contract.options.address, web3.utils.toWei('10000000000', 'ether'))
       .send({from: accounts[0]})
