@@ -14,11 +14,15 @@
     "async": "^3.2.2",
     "browserify": "^17.0.0",
     "chai": "^4.3.6",
+    "dotenv": "^16.0.0",
     "fs": "^0.0.1-security",
     "node-fetch": "^2.6.7",
     "parcel": "^2.4.1",
     "prettier": "^2.6.2",
     "static-server": "^2.2.1",
     "web3": "^1.7.1"
+  },
+  "devDependencies": {
+    "truffle-plugin-verify": "^0.5.25"
   }
 }

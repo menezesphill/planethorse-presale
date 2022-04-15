@@ -1,5 +1,7 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const { projectId, mnemonic } = require('./secrets.json');
+const { mnemonic } = require('./secrets.json');
+require('dotenv').config();
+
 
 /**
  * Use this file to configure your truffle project. It's seeded with some
@@ -46,7 +48,7 @@ module.exports = {
   },
 
   rinkeby: {
-    provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${projectId}`),
+    provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${process.env.PROJECT_ID}`),
     network_id: 4,       // Ropsten's id
     gas: 5500000,        // Ropsten has a lower block limit than mainnet
     confirmations: 2,    // # of confs to wait between deployments. (default: 0)
@@ -77,7 +79,7 @@ module.exports = {
        settings: {          // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
           enabled: true,
-          runs: 10
+          runs: 200
         },
       //  evmVersion: "byzantium"
        }
@@ -104,4 +106,17 @@ module.exports = {
     //   }
     // }
   // }
+  
+  // @dev to verify the smart contract on its respective block scanner, run:
+  // 
+  //  truffle run verify tUSD --network mumbai
+  //  truffle run verify PlanetHorseNFT --network mumbai
+  //
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    polygonscan: process.env.MATIC_API_KEY,
+    etherscan: process.env.ETHER_API_KEY
+  }
 };

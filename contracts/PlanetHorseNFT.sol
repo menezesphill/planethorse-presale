@@ -66,6 +66,7 @@ contract PlanetHorseNFT is
   });
 
   mapping(uint256 => bool) private _revealed;
+  mapping(uint256 => bool) private _revealRequestCompleted;
   mapping(address => bool) private _whitelist;
   mapping(uint256 => string) private _tokenTiers;
   mapping(uint256 => string) private _revealedTokenURIs;
@@ -326,7 +327,11 @@ contract PlanetHorseNFT is
     external
     onlyAuthorized
   {
+    if(authorized[msg.sender]) {
+      require(!_revealRequestCompleted[tokenId], "PlanetHorseNFT: Duplicated reveal request");
+    }
     _revealedTokenURIs[tokenId] = baseURI;
+    _revealRequestCompleted[tokenId] = true;
 
   }
 
@@ -343,6 +348,13 @@ contract PlanetHorseNFT is
      emit RevealRequested(msg.sender, tokenId, _tokenTiers[tokenId]);
   }
 
+  function isRevealed(uint256 tokenId)
+    external
+    view
+    returns (bool)
+  {
+    return _revealed[tokenId];
+  }
 
   function registerWhitelist(address[] memory addrs) external onlyOwner {
         for(uint256 i = 0; i < addrs.length; i++)
