@@ -11,7 +11,7 @@
     "@metamask/onboarding": "^1.0.1",
     "@openzeppelin/contracts": "^4.5.0",
     "@truffle/hdwallet-provider": "^2.0.4",
-    "async": "^3.2.2",
+    "async": "^2.6.4",
     "browserify": "^17.0.0",
     "chai": "^4.3.6",
     "dotenv": "^16.0.0",
