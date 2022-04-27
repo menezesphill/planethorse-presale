@@ -19,6 +19,6 @@ module.exports = function (deployer) {
       1649271018,
       1649271018,
       1649271018,
-      "https://gateway.pinata.cloud/ipfs/QmYomJQPZ4cxPAu2utmLseLJ5JKqvcopiuqhZKwrjQjdBq/",
+      "https://opensea.mypinata.cloud/ipfs/QmUiPkJJih1YznUWYCyLyLKfhEhr7AJpNaVzAgTpUQTVtF/",
       false));  
 };
